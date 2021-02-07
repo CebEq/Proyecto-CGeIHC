@@ -123,88 +123,232 @@ typedef struct _frame
 	int steps;
 }FRAME;
 
-FRAME KeyFrame[MAX_FRAMES];
-int FrameIndex = 0;		// Starting frame
-bool play = false;
-int playIndex = 0;
+FRAME KeyFrameCandle[MAX_FRAMES];
+int FrameIndexCandle = 0;		// Starting frame
+bool playCandle = false;
+int playIndexCandle = 0;
 
-void initialiseKeyframes(void)
+
+glm::vec3 inPosSyringe(0.956524f, 1.425150, 87.661003f);
+glm::vec3 inRotSyringe(75.000000f, 0.0f, 16.000000f);
+float SposX = inPosSyringe.x, SposY = inPosSyringe.y, SposZ = inPosSyringe.z;
+float SrotX = inRotSyringe.x, SrotY = inRotSyringe.y, SrotZ = inRotSyringe.z;
+
+glm::vec3 inPosSyringeP(1.056524f, 1.454260, 87.661003f);
+glm::vec3 inRotSyringeP(75.000000f, 0.0f, 16.000000f);
+float SPposX = inPosSyringeP.x, SPposY = inPosSyringeP.y, SPposZ = inPosSyringeP.z;
+float SProtX = inRotSyringeP.x, SProtY = inRotSyringeP.y, SProtZ = inRotSyringeP.z;
+
+#define MAX_FRAMES_S 2
+int i_max_steps_s = 190;
+int i_curr_steps_s = 0;
+
+FRAME KeyFrameS[MAX_FRAMES_S];
+int FrameIndexS = 0;		// Starting frame
+bool playS = false;
+int playIndexS = 0;
+
+#define MAX_FRAMES_SP 4
+int i_max_steps_sp = 190;
+int i_curr_steps_sp = 0;
+
+FRAME KeyFrameSP[MAX_FRAMES_SP];
+int FrameIndexSP = 0;		// Starting frame
+bool playSP = false;
+int playIndexSP = 0;
+
+void initialiseKeyframes(FRAME KeyFrame[], int type)
 {
-	FrameIndex = 0;
+	if (type == 1)
+	{
+		printf("Keyframes for candle\n");
 
-	KeyFrame[FrameIndex].posX = posX;
-	KeyFrame[FrameIndex].posY = posY;
-	KeyFrame[FrameIndex].posZ = posZ;
+		FrameIndexCandle = 0;
 
-	KeyFrame[FrameIndex].rotX = rotX;
-	KeyFrame[FrameIndex].rotY = rotY;
-	KeyFrame[FrameIndex].rotZ = rotZ;
+		KeyFrame[FrameIndexCandle].posX = posX;
+		KeyFrame[FrameIndexCandle].posY = posY;
+		KeyFrame[FrameIndexCandle].posZ = posZ;
 
-	KeyFrame[FrameIndex].steps = 10;
+		KeyFrame[FrameIndexCandle].rotX = rotX;
+		KeyFrame[FrameIndexCandle].rotY = rotY;
+		KeyFrame[FrameIndexCandle].rotZ = rotZ;
 
-	printf("Frameindex %d\t", FrameIndex);
-	printf("posX: %f, posY: %f, posZ: %f, rotX: %f, rotY: %f, rotZ: %f\n", posX, posY, posZ, rotX, rotY, rotZ);
+		KeyFrame[FrameIndexCandle].steps = 10;
 
-	FrameIndex = 1;
+		printf("Frameindex %d\t", FrameIndexCandle);
+		printf("posX: %f, posY: %f, posZ: %f, rotX: %f, rotY: %f, rotZ: %f\n", posX, posY, posZ, rotX, rotY, rotZ);
 
-	KeyFrame[FrameIndex].posX = 1.043391;
-	KeyFrame[FrameIndex].posY = 0.583360;
-	KeyFrame[FrameIndex].posZ = 95.623306;
+		FrameIndexCandle = 1;
 
-	KeyFrame[FrameIndex].rotX = -35.000000;
-	KeyFrame[FrameIndex].rotY = 0.000000;
-	KeyFrame[FrameIndex].rotZ = -53.000000;
+		KeyFrame[FrameIndexCandle].posX = 1.043391;
+		KeyFrame[FrameIndexCandle].posY = 0.583360;
+		KeyFrame[FrameIndexCandle].posZ = 95.623306;
 
-	KeyFrame[FrameIndex].steps = 10;
+		KeyFrame[FrameIndexCandle].rotX = -35.000000;
+		KeyFrame[FrameIndexCandle].rotY = 0.000000;
+		KeyFrame[FrameIndexCandle].rotZ = -53.000000;
 
-	printf("Frameindex %d\t", FrameIndex);
-	printf("posX: %f, posY: %f, posZ: %f, rotX: %f, rotY: %f, rotZ: %f\n", KeyFrame[FrameIndex].posX, KeyFrame[FrameIndex].posY, KeyFrame[FrameIndex].posZ, KeyFrame[FrameIndex].rotX, KeyFrame[FrameIndex].rotY, KeyFrame[FrameIndex].rotZ);
+		KeyFrame[FrameIndexCandle].steps = 10;
 
-	FrameIndex = 2;
+		printf("Frameindex %d\t", FrameIndexCandle);
+		printf("posX: %f, posY: %f, posZ: %f, rotX: %f, rotY: %f, rotZ: %f\n", KeyFrame[FrameIndexCandle].posX, KeyFrame[FrameIndexCandle].posY, KeyFrame[FrameIndexCandle].posZ, KeyFrame[FrameIndexCandle].rotX, KeyFrame[FrameIndexCandle].rotY, KeyFrame[FrameIndexCandle].rotZ);
 
-	KeyFrame[FrameIndex].posX = 1.163390;
-	KeyFrame[FrameIndex].posY = 0.093360;
-	KeyFrame[FrameIndex].posZ = 95.474731;
+		FrameIndexCandle = 2;
 
-	KeyFrame[FrameIndex].rotX = -44.999969;
-	KeyFrame[FrameIndex].rotY = 0.000000;
-	KeyFrame[FrameIndex].rotZ = -86.999931;
+		KeyFrame[FrameIndexCandle].posX = 1.163390;
+		KeyFrame[FrameIndexCandle].posY = 0.093360;
+		KeyFrame[FrameIndexCandle].posZ = 95.474731;
 
-	KeyFrame[FrameIndex].steps = 20;
+		KeyFrame[FrameIndexCandle].rotX = -44.999969;
+		KeyFrame[FrameIndexCandle].rotY = 0.000000;
+		KeyFrame[FrameIndexCandle].rotZ = -86.999931;
 
-	printf("Frameindex %d\t", FrameIndex);
-	printf("posX: %f, posY: %f, posZ: %f, rotX: %f, rotY: %f, rotZ: %f\n", KeyFrame[FrameIndex].posX, KeyFrame[FrameIndex].posY, KeyFrame[FrameIndex].posZ, KeyFrame[FrameIndex].rotX, KeyFrame[FrameIndex].rotY, KeyFrame[FrameIndex].rotZ);
-	
-	FrameIndex = 3;
+		KeyFrame[FrameIndexCandle].steps = 20;
 
-	KeyFrame[FrameIndex].posX = 0.813394;
-	KeyFrame[FrameIndex].posY = 0.093360;
-	KeyFrame[FrameIndex].posZ = 95.375046;
+		printf("FrameIndexCandle %d\t", FrameIndexCandle);
+		printf("posX: %f, posY: %f, posZ: %f, rotX: %f, rotY: %f, rotZ: %f\n", KeyFrame[FrameIndexCandle].posX, KeyFrame[FrameIndexCandle].posY, KeyFrame[FrameIndexCandle].posZ, KeyFrame[FrameIndexCandle].rotX, KeyFrame[FrameIndexCandle].rotY, KeyFrame[FrameIndexCandle].rotZ);
 
-	KeyFrame[FrameIndex].rotX = -140.000076;
-	KeyFrame[FrameIndex].rotY = -90.000000;
-	KeyFrame[FrameIndex].rotZ = -91.000031;
+		FrameIndexCandle = 3;
 
-	KeyFrame[FrameIndex].steps = 20;
+		KeyFrame[FrameIndexCandle].posX = 0.813394;
+		KeyFrame[FrameIndexCandle].posY = 0.093360;
+		KeyFrame[FrameIndexCandle].posZ = 95.375046;
 
-	printf("Frameindex %d\t", FrameIndex);
-	printf("posX: %f, posY: %f, posZ: %f, rotX: %f, rotY: %f, rotZ: %f\n", KeyFrame[FrameIndex].posX, KeyFrame[FrameIndex].posY, KeyFrame[FrameIndex].posZ, KeyFrame[FrameIndex].rotX, KeyFrame[FrameIndex].rotY, KeyFrame[FrameIndex].rotZ);
+		KeyFrame[FrameIndexCandle].rotX = -140.000076;
+		KeyFrame[FrameIndexCandle].rotY = -90.000000;
+		KeyFrame[FrameIndexCandle].rotZ = -91.000031;
 
-	FrameIndex = 4;
+		KeyFrame[FrameIndexCandle].steps = 20;
+
+		printf("FrameIndexCandle %d\t", FrameIndexCandle);
+		printf("posX: %f, posY: %f, posZ: %f, rotX: %f, rotY: %f, rotZ: %f\n", KeyFrame[FrameIndexCandle].posX, KeyFrame[FrameIndexCandle].posY, KeyFrame[FrameIndexCandle].posZ, KeyFrame[FrameIndexCandle].rotX, KeyFrame[FrameIndexCandle].rotY, KeyFrame[FrameIndexCandle].rotZ);
+
+		FrameIndexCandle = 4;
+	}
+	else if (type == 2)
+	{
+		printf("\nKeyframes for syringe base\n");
+
+		FrameIndexS = 0;
+
+		KeyFrame[FrameIndexS].posX = SposX;
+		KeyFrame[FrameIndexS].posY = SposY;
+		KeyFrame[FrameIndexS].posZ = SposZ;
+
+		KeyFrame[FrameIndexS].rotX = SrotX;
+		KeyFrame[FrameIndexS].rotY = SrotY;
+		KeyFrame[FrameIndexS].rotZ = SrotZ;
+
+		KeyFrame[FrameIndexS].steps = 25;
+
+		printf("FrameIndexS %d\t", FrameIndexS);
+		printf("posX: %f, posY: %f, posZ: %f, rotX: %f, rotY: %f, rotZ: %f\n", SposX, SposY, SposZ, SrotX, SrotY, SrotZ);
+
+		FrameIndexS = 1;
+
+		KeyFrame[FrameIndexS].posX = 0.856524;
+		KeyFrame[FrameIndexS].posY = 1.405150;
+		KeyFrame[FrameIndexS].posZ = SposZ;
+
+		KeyFrame[FrameIndexS].rotX = SrotX;
+		KeyFrame[FrameIndexS].rotY = SrotY;
+		KeyFrame[FrameIndexS].rotZ = SrotZ;
+
+		KeyFrame[FrameIndexS].steps = 20;
+
+		printf("FrameIndexS %d\t", FrameIndexS);
+		printf("posX: %f, posY: %f, posZ: %f, rotX: %f, rotY: %f, rotZ: %f\n", KeyFrame[FrameIndexS].posX, KeyFrame[FrameIndexS].posY, KeyFrame[FrameIndexS].posZ, KeyFrame[FrameIndexS].rotX, KeyFrame[FrameIndexS].rotY, KeyFrame[FrameIndexS].rotZ);
+
+		FrameIndexS = 2;
+	}
+	else if (type == 3)
+	{
+		printf("\nKeyframes for syringe plunger\n");
+
+		FrameIndexSP = 0;
+
+		KeyFrame[FrameIndexSP].posX = SPposX;
+		KeyFrame[FrameIndexSP].posY = SPposY;
+		KeyFrame[FrameIndexSP].posZ = SPposZ;
+
+		KeyFrame[FrameIndexSP].rotX = SProtX;
+		KeyFrame[FrameIndexSP].rotY = SProtY;
+		KeyFrame[FrameIndexSP].rotZ = SProtZ;
+
+		KeyFrame[FrameIndexSP].steps = 25;
+
+		printf("FrameIndexSP %d\t", FrameIndexSP);
+		printf("posX: %f, posY: %f, posZ: %f, rotX: %f, rotY: %f, rotZ: %f\n", SPposX, SPposY, SPposZ, SProtX, SProtY, SProtZ);
+
+		FrameIndexSP = 1;
+
+		KeyFrame[FrameIndexSP].posX = 0.956524;
+		KeyFrame[FrameIndexSP].posY = 1.433150;
+		KeyFrame[FrameIndexSP].posZ = SPposZ;
+
+		KeyFrame[FrameIndexSP].rotX = SProtX;
+		KeyFrame[FrameIndexSP].rotY = SProtY;
+		KeyFrame[FrameIndexSP].rotZ = SProtZ;
+
+		KeyFrame[FrameIndexSP].steps = 30;
+
+		printf("FrameIndexS %d\t", FrameIndexSP);
+		printf("posX: %f, posY: %f, posZ: %f, rotX: %f, rotY: %f, rotZ: %f\n", KeyFrame[FrameIndexSP].posX, KeyFrame[FrameIndexSP].posY, KeyFrame[FrameIndexSP].posZ, KeyFrame[FrameIndexSP].rotX, KeyFrame[FrameIndexSP].rotY, KeyFrame[FrameIndexSP].rotZ);
+
+		FrameIndexSP = 2;
+
+		KeyFrame[FrameIndexSP].posX = 0.876524;
+		KeyFrame[FrameIndexSP].posY = 1.410550;
+		KeyFrame[FrameIndexSP].posZ = SposZ;
+
+		KeyFrame[FrameIndexSP].rotX = SrotX;
+		KeyFrame[FrameIndexSP].rotY = SrotY;
+		KeyFrame[FrameIndexSP].rotZ = SrotZ;
+
+		KeyFrame[FrameIndexSP].steps = 30;
+
+		printf("FrameIndexS %d\t", FrameIndexSP);
+		printf("posX: %f, posY: %f, posZ: %f, rotX: %f, rotY: %f, rotZ: %f\n", KeyFrame[FrameIndexSP].posX, KeyFrame[FrameIndexSP].posY, KeyFrame[FrameIndexSP].posZ, KeyFrame[FrameIndexSP].rotX, KeyFrame[FrameIndexSP].rotY, KeyFrame[FrameIndexSP].rotZ);
+
+		FrameIndexSP = 3;
+	}
 }
 
-void resetElements(void)
+void resetElements(FRAME KeyFrame[], int type)
 {
-	posX = KeyFrame[0].posX;
-	posY = KeyFrame[0].posY;
-	posZ = KeyFrame[0].posZ;
+	if (type == 1)
+	{
+		posX = KeyFrame[0].posX;
+		posY = KeyFrame[0].posY;
+		posZ = KeyFrame[0].posZ;
 
-	rotX = KeyFrame[0].rotX;
-	rotY = KeyFrame[0].rotY;
-	rotZ = KeyFrame[0].rotZ;
+		rotX = KeyFrame[0].rotX;
+		rotY = KeyFrame[0].rotY;
+		rotZ = KeyFrame[0].rotZ;
+	}
+	else if (type == 2)
+	{
+		SposX = KeyFrame[0].posX;
+		SposY = KeyFrame[0].posY;
+		SposZ = KeyFrame[0].posZ;
+
+		SrotX = KeyFrame[0].rotX;
+		SrotY = KeyFrame[0].rotY;
+		SrotZ = KeyFrame[0].rotZ;
+	}
+	else if (type == 3)
+	{
+		SPposX = KeyFrame[0].posX;
+		SPposY = KeyFrame[0].posY;
+		SPposZ = KeyFrame[0].posZ;
+
+		SProtX = KeyFrame[0].rotX;
+		SProtY = KeyFrame[0].rotY;
+		SProtZ = KeyFrame[0].rotZ;
+	}
 }
 
-void interpolation(void)
+void interpolation(FRAME KeyFrame[], int playIndex)
 {
 	KeyFrame[playIndex].posIncX = (KeyFrame[playIndex + 1].posX - KeyFrame[playIndex].posX) / KeyFrame[playIndex].steps;
 	KeyFrame[playIndex].posIncY = (KeyFrame[playIndex + 1].posY - KeyFrame[playIndex].posY) / KeyFrame[playIndex].steps;
@@ -290,8 +434,10 @@ int main()
 	Model pillowBench((char*)"Models/PillowBench/PillowBench.obj");
 	Model tablet((char*)"Models/Tablet/Tablet.obj");
 	Model trashcan((char*)"Models/Trashcan/Trashcan.obj");
-	Model orange((char*)"Models/Orange/orange.obj");
 	Model signFloor((char*)"Models/SignFloor/SignFloor.obj");
+	Model signWall((char*)"Models/SignWall/SignWall.obj");
+	Model syringe((char*)"Models/Syringe/Syringe_Base.obj");
+	Model syringePlunger((char*)"Models/Syringe/Syringe_Plunger.obj");
 
 	ModelAnim femaleNurse("AnimatedModels/FemaleNurse.fbx");
 	femaleNurse.initShaders(animShader.Program);
@@ -299,8 +445,8 @@ int main()
 	ModelAnim maleNurse("AnimatedModels/MaleNurse.fbx");
 	maleNurse.initShaders(animShader.Program);
 
-	ModelAnim pacient("AnimatedModels/Pacient.fbx");
-	pacient.initShaders(animShader.Program);
+	ModelAnim patient("AnimatedModels/Patient.fbx");
+	patient.initShaders(animShader.Program);
 
 	// Set up vertex data (and buffer(s)) and attribute pointers
 	GLfloat vertices[] =
@@ -559,7 +705,9 @@ int main()
 		glm::vec4(-9.36705f, 0.531023f, 96.4145f, 3.0f)
 	};
 
-	initialiseKeyframes();
+	initialiseKeyframes(KeyFrameCandle, 1);
+	initialiseKeyframes(KeyFrameS, 2);
+	initialiseKeyframes(KeyFrameSP, 3);
 
 	// Game loop
 	while (!glfwWindowShouldClose(window))
@@ -582,7 +730,7 @@ int main()
 
 		if (staticCam)
 		{
-			camera.SetPosition(glm::vec3(0.669385f, 1.44f, 88.1523f));
+			camera.SetPosition(glm::vec3(0.679385f, 1.43f, 88.1023f));
 			camera.SetDirection(-180.0f, 0.0f);
 		}
 
@@ -1090,12 +1238,6 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		trashcan.Draw(lightingShader);
 
-		// Orange
-		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-9.11696f, 0.531508f, 105.869f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		orange.Draw(lightingShader);
-
 		// Floor Signs
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(7.0f, 0.0f, 64.0f));
@@ -1114,6 +1256,42 @@ int main()
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		signFloor.Draw(lightingShader);
+
+		// Wall Signs
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-0.154983f, 3.50899f, 87.2863f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.929782f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		signWall.Draw(lightingShader);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-11.8565f, 3.03645f, 96.952f));
+		model = glm::rotate(model, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.20931f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		signWall.Draw(lightingShader);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(11.6774f, 3.03645f, 96.952f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.20931f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		signWall.Draw(lightingShader);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(0.0f, 3.88585f, 109.717f));
+		model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.844937f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		signWall.Draw(lightingShader);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(0.0f, 3.88585f, 80.7157f));
+		model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.844937f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		signWall.Draw(lightingShader);
 
 		// Draw transparent objects from furthest to nearest
 		for (std::map<float, glm::vec4>::reverse_iterator it = sorted.rbegin(); it != sorted.rend(); ++it)
@@ -1148,15 +1326,36 @@ int main()
 			}
 		}
 
+		if (staticCam)
+		{
+			// Syringe Plunge
+			// Animated - Complex Animation (Keyframes)
+			model = glm::mat4(1.0f);
+			model = glm::translate(model, glm::vec3(SPposX, SPposY, SPposZ));
+			model = glm::rotate(model, glm::radians(SProtZ), glm::vec3(0.0f, 0.0f, 1.0f));
+			model = glm::rotate(model, glm::radians(SProtY), glm::vec3(0.0f, 1.0f, 0.0f));
+			model = glm::rotate(model, glm::radians(SProtX), glm::vec3(1.0f, 0.0f, 0.0f));
+			model = glm::scale(model, glm::vec3(1.45f));
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+			syringePlunger.Draw(lightingShader);
+
+			// Syringe
+			// Animated - Complex Animation (Keyframes)
+			model = glm::mat4(1.0f);
+			model = glm::translate(model, glm::vec3(SposX, SposY, SposZ));
+			model = glm::rotate(model, glm::radians(SrotZ), glm::vec3(0.0f, 0.0f, 1.0f));
+			model = glm::rotate(model, glm::radians(SrotY), glm::vec3(0.0f, 1.0f, 0.0f));
+			model = glm::rotate(model, glm::radians(SrotX), glm::vec3(1.0f, 0.0f, 0.0f));
+			model = glm::scale(model, glm::vec3(1.56214f));
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+			syringe.Draw(lightingShader);
+		}
+
 		glBindVertexArray(0);
 
 		/*_______________________________Personaje Animado___________________________*/
 
 		animShader.Use();
-
-		GLint viewPosLocAnim = glGetUniformLocation(animShader.Program, "viewPos");
-		glUniform3f(viewPosLocAnim, camera.GetPosition().x, camera.GetPosition().y, camera.GetPosition().z);
-		animShader.setVec3("lightPos", lightPos);
 
 		glUniform1f(glGetUniformLocation(animShader.Program, "material.shininess"), 32.0f);
 		glUniform3f(glGetUniformLocation(animShader.Program, "light.ambient"), 0.611f, 0.603f, 0.588f);
@@ -1192,7 +1391,7 @@ int main()
 		model = glm::translate(model, glm::vec3(0.329385f, 0.05f, 87.5523f));
 		model = glm::scale(model, glm::vec3(0.0155f));	// it's a bit too big for our scene, so scale it down
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		pacient.Draw(animShader);
+		patient.Draw(animShader);
 
 		glBindVertexArray(0);
 
@@ -1274,32 +1473,32 @@ void animation()
 
 	// Candle animation
 
-	if (play)
+	if (playCandle)
 	{
-		if (i_curr_steps >= KeyFrame[playIndex].steps) //end of animation between frames?
+		if (i_curr_steps >= KeyFrameCandle[playIndexCandle].steps) //end of animation between frames?
 		{
-			playIndex++;
-			if (playIndex > FrameIndex - 2)	//end of total animation?
+			playIndexCandle++;
+			if (playIndexCandle > FrameIndexCandle - 2)	//end of total animation?
 			{
 				printf("termina anim\n");
-				playIndex = 0;
-				play = false;
+				playIndexCandle = 0;
+				playCandle = false;
 			}
 			else //Next frame interpolations
 			{
 				i_curr_steps = 0; //Reset counter								  
-				interpolation();  //Interpolation
+				interpolation(KeyFrameCandle, playIndexCandle);  //Interpolation
 			}
 		}
 		else
 		{
 			//Draw animation
-			posX += KeyFrame[playIndex].posIncX;
-			posY += KeyFrame[playIndex].posIncY;
-			posZ += KeyFrame[playIndex].posIncZ;
-			rotX += KeyFrame[playIndex].rotIncX;
-			rotY += KeyFrame[playIndex].rotIncY;
-			rotZ += KeyFrame[playIndex].rotIncZ;
+			posX += KeyFrameCandle[playIndexCandle].posIncX;
+			posY += KeyFrameCandle[playIndexCandle].posIncY;
+			posZ += KeyFrameCandle[playIndexCandle].posIncZ;
+			rotX += KeyFrameCandle[playIndexCandle].rotIncX;
+			rotY += KeyFrameCandle[playIndexCandle].rotIncY;
+			rotZ += KeyFrameCandle[playIndexCandle].rotIncZ;
 
 			i_curr_steps++;
 		}
@@ -1365,6 +1564,72 @@ void animation()
 			tabletAnimEnd = false;
 		}
 	}
+
+	// Syringe base animation
+
+	if (playS)
+	{
+		if (i_curr_steps_s >= KeyFrameS[playIndexS].steps) //end of animation between frames?
+		{
+			playIndexS++;
+			if (playIndexS > FrameIndexS - 2)	//end of total animation?
+			{
+				printf("termina anim\n");
+				playIndexS = 0;
+				playS = false;
+			}
+			else //Next frame interpolations
+			{
+				i_curr_steps_s = 0; //Reset counter								  
+				interpolation(KeyFrameS, playIndexS);  //Interpolation
+			}
+		}
+		else
+		{
+			//Draw animation
+			SposX += KeyFrameS[playIndexS].posIncX;
+			SposY += KeyFrameS[playIndexS].posIncY;
+			SposZ += KeyFrameS[playIndexS].posIncZ;
+			SrotX += KeyFrameS[playIndexS].rotIncX;
+			SrotY += KeyFrameS[playIndexS].rotIncY;
+			SrotZ += KeyFrameS[playIndexS].rotIncZ;
+
+			i_curr_steps_s++;
+		}
+	}
+
+	// Syringe plunger animation
+
+	if (playSP)
+	{
+		if (i_curr_steps_sp >= KeyFrameSP[playIndexSP].steps) //end of animation between frames?
+		{
+			playIndexSP++;
+			if (playIndexSP > FrameIndexSP - 2)	//end of total animation?
+			{
+				printf("termina anim\n");
+				playIndexSP = 0;
+				playSP = false;
+			}
+			else //Next frame interpolations
+			{
+				i_curr_steps_sp = 0; //Reset counter								  
+				interpolation(KeyFrameSP, playIndexSP);  //Interpolation
+			}
+		}
+		else
+		{
+			//Draw animation
+			SPposX += KeyFrameSP[playIndexSP].posIncX;
+			SPposY += KeyFrameSP[playIndexSP].posIncY;
+			SPposZ += KeyFrameSP[playIndexSP].posIncZ;
+			SProtX += KeyFrameSP[playIndexSP].rotIncX;
+			SProtY += KeyFrameSP[playIndexSP].rotIncY;
+			SProtZ += KeyFrameSP[playIndexSP].rotIncZ;
+
+			i_curr_steps_sp++;
+		}
+	}
 }
 
 // Moves/alters the camera positions based on user input
@@ -1419,12 +1684,74 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode
 	{
 		freeCam = true;
 		staticCam = false;
+
+		playS = false;
+		SposX = inPosSyringe.x;
+		SposY = inPosSyringe.y;
+		SposZ = inPosSyringe.z;
+		SrotX = inRotSyringe.x;
+		SrotY = inRotSyringe.y;
+		SrotZ = inRotSyringe.z;
+
+		playSP = false;
+		SPposX = inPosSyringeP.x;
+		SPposY = inPosSyringeP.y;
+		SPposZ = inPosSyringeP.z;
+		SProtX = inRotSyringeP.x;
+		SProtY = inRotSyringeP.y;
+		SProtZ = inRotSyringeP.z;
 	}
 
 	if (keys[GLFW_KEY_N])
 	{
 		freeCam = false;
 		staticCam = true;
+	}
+
+	if (keys[GLFW_KEY_V] && staticCam)
+	{
+		if (playS == false && (FrameIndexS > 1) && playSP == false && (FrameIndexSP > 1))
+		{
+			resetElements(KeyFrameS, 2);
+			//First Interpolation				
+			interpolation(KeyFrameS, playIndexS);
+
+			playS = true;
+			playIndexS = 0;
+			i_curr_steps_s = 0;
+
+			resetElements(KeyFrameSP, 3);
+			//First Interpolation				
+			interpolation(KeyFrameSP, playIndexSP);
+
+			playSP = true;
+			playIndexSP = 0;
+			i_curr_steps_sp = 0;
+		}
+		else
+		{
+			playS = false;
+			playSP = false;
+		}
+	}
+
+	if (keys[GLFW_KEY_B] && staticCam)
+	{
+		playS = false;
+		SposX = inPosSyringe.x;
+		SposY = inPosSyringe.y;
+		SposZ = inPosSyringe.z;
+		SrotX = inRotSyringe.x;
+		SrotY = inRotSyringe.y;
+		SrotZ = inRotSyringe.z;
+
+		playSP = false;
+		SPposX = inPosSyringeP.x;
+		SPposY = inPosSyringeP.y;
+		SPposZ = inPosSyringeP.z;
+		SProtX = inRotSyringeP.x;
+		SProtY = inRotSyringeP.y;
+		SProtZ = inRotSyringeP.z;
 	}
 
 	if (keys[GLFW_KEY_1])
@@ -1441,25 +1768,25 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode
 
 	if (keys[GLFW_KEY_3])
 	{
-		if (play == false && (FrameIndex > 1))
+		if (playCandle == false && (FrameIndexCandle > 1))
 		{
-			resetElements();
+			resetElements(KeyFrameCandle, 1);
 			//First Interpolation				
-			interpolation();
+			interpolation(KeyFrameCandle, playIndexCandle);
 
-			play = true;
-			playIndex = 0;
+			playCandle = true;
+			playIndexCandle = 0;
 			i_curr_steps = 0;
 		}
 		else
 		{
-			play = false;
+			playCandle = false;
 		}
 	}
 
 	if (keys[GLFW_KEY_4])
 	{
-		play = false;
+		playCandle = false;
 		posX = inPosCandle.x;
 		posY = inPosCandle.y;
 		posZ = inPosCandle.z;
