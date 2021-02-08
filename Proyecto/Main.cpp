@@ -371,7 +371,7 @@ int main()
 	glfwWindowHint(GLFW_SAMPLES, 4);
 
 	// Create a GLFWwindow object that we can use for GLFW's functions
-	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Proyecto - CNCE", nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Proyecto - Escena 1", nullptr, nullptr);
 
 	if (nullptr == window)
 	{
@@ -438,6 +438,7 @@ int main()
 	Model signWall((char*)"Models/SignWall/SignWall.obj");
 	Model syringe((char*)"Models/Syringe/Syringe_Base.obj");
 	Model syringePlunger((char*)"Models/Syringe/Syringe_Plunger.obj");
+	Model vaccine((char*)"Models/Vaccine/Vaccine.obj");
 
 	ModelAnim femaleNurse("AnimatedModels/FemaleNurse.fbx");
 	femaleNurse.initShaders(animShader.Program);
@@ -1292,6 +1293,23 @@ int main()
 		model = glm::scale(model, glm::vec3(0.844937f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		signWall.Draw(lightingShader);
+
+		// Vaccines
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-7.53578f, 0.526771f, 96.5978f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		vaccine.Draw(lightingShader);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-7.48441f, 0.526771f, 96.6051f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		vaccine.Draw(lightingShader);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-7.53085f, 0.526771f, 96.655f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		vaccine.Draw(lightingShader);
+
 
 		// Draw transparent objects from furthest to nearest
 		for (std::map<float, glm::vec4>::reverse_iterator it = sorted.rbegin(); it != sorted.rend(); ++it)
