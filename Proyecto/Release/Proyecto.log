@@ -1,0 +1,41 @@
+﻿  Main.cpp
+F:\GitHub\CGeIHC-Project\Proyecto\modelAnim.h(104,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+F:\GitHub\CGeIHC-Project\Proyecto\modelAnim.h(519,24): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+F:\GitHub\CGeIHC-Project\Proyecto\Main.cpp(183,45): warning C4305: '=': truncation from 'double' to 'float'
+F:\GitHub\CGeIHC-Project\Proyecto\Main.cpp(184,45): warning C4305: '=': truncation from 'double' to 'float'
+F:\GitHub\CGeIHC-Project\Proyecto\Main.cpp(185,46): warning C4305: '=': truncation from 'double' to 'float'
+F:\GitHub\CGeIHC-Project\Proyecto\Main.cpp(198,45): warning C4305: '=': truncation from 'double' to 'float'
+F:\GitHub\CGeIHC-Project\Proyecto\Main.cpp(199,45): warning C4305: '=': truncation from 'double' to 'float'
+F:\GitHub\CGeIHC-Project\Proyecto\Main.cpp(200,46): warning C4305: '=': truncation from 'double' to 'float'
+F:\GitHub\CGeIHC-Project\Proyecto\Main.cpp(202,47): warning C4305: '=': truncation from 'double' to 'float'
+F:\GitHub\CGeIHC-Project\Proyecto\Main.cpp(204,47): warning C4305: '=': truncation from 'double' to 'float'
+F:\GitHub\CGeIHC-Project\Proyecto\Main.cpp(213,45): warning C4305: '=': truncation from 'double' to 'float'
+F:\GitHub\CGeIHC-Project\Proyecto\Main.cpp(214,45): warning C4305: '=': truncation from 'double' to 'float'
+F:\GitHub\CGeIHC-Project\Proyecto\Main.cpp(215,46): warning C4305: '=': truncation from 'double' to 'float'
+F:\GitHub\CGeIHC-Project\Proyecto\Main.cpp(217,48): warning C4305: '=': truncation from 'double' to 'float'
+F:\GitHub\CGeIHC-Project\Proyecto\Main.cpp(219,47): warning C4305: '=': truncation from 'double' to 'float'
+F:\GitHub\CGeIHC-Project\Proyecto\Main.cpp(249,40): warning C4305: '=': truncation from 'double' to 'float'
+F:\GitHub\CGeIHC-Project\Proyecto\Main.cpp(250,40): warning C4305: '=': truncation from 'double' to 'float'
+F:\GitHub\CGeIHC-Project\Proyecto\Main.cpp(285,41): warning C4305: '=': truncation from 'double' to 'float'
+F:\GitHub\CGeIHC-Project\Proyecto\Main.cpp(286,41): warning C4305: '=': truncation from 'double' to 'float'
+F:\GitHub\CGeIHC-Project\Proyecto\Main.cpp(300,41): warning C4305: '=': truncation from 'double' to 'float'
+F:\GitHub\CGeIHC-Project\Proyecto\Main.cpp(301,41): warning C4305: '=': truncation from 'double' to 'float'
+F:\GitHub\CGeIHC-Project\Proyecto\Main.cpp(718,24): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+F:\GitHub\CGeIHC-Project\Proyecto\Main.cpp(1937,11): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+F:\GitHub\CGeIHC-Project\Proyecto\Main.cpp(1938,11): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+F:\GitHub\CGeIHC-Project\Proyecto\Main.cpp(1942,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+F:\GitHub\CGeIHC-Project\Proyecto\Main.cpp(1943,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+F:\GitHub\CGeIHC-Project\Proyecto\Main.cpp(1945,10): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+F:\GitHub\CGeIHC-Project\Proyecto\Main.cpp(1946,10): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+soil2-debug.lib(SOIL2.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:ICF' specification
+LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
+  Generating code
+  1 of 1179 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    2 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+soil2-debug.lib(etc1_utils.obj) : warning LNK4099: PDB 'soil2-debug.pdb' was not found with 'soil2-debug.lib(etc1_utils.obj)' or at 'F:\GitHub\CGeIHC-Project\Release\soil2-debug.pdb'; linking object as if no debug info
+soil2-debug.lib(image_DXT.obj) : warning LNK4099: PDB 'soil2-debug.pdb' was not found with 'soil2-debug.lib(image_DXT.obj)' or at 'F:\GitHub\CGeIHC-Project\Release\soil2-debug.pdb'; linking object as if no debug info
+soil2-debug.lib(image_helper.obj) : warning LNK4099: PDB 'soil2-debug.pdb' was not found with 'soil2-debug.lib(image_helper.obj)' or at 'F:\GitHub\CGeIHC-Project\Release\soil2-debug.pdb'; linking object as if no debug info
+soil2-debug.lib(SOIL2.obj) : warning LNK4099: PDB 'soil2-debug.pdb' was not found with 'soil2-debug.lib(SOIL2.obj)' or at 'F:\GitHub\CGeIHC-Project\Release\soil2-debug.pdb'; linking object as if no debug info
+  Proyecto.vcxproj -> F:\GitHub\CGeIHC-Project\Release\Proyecto.exe
