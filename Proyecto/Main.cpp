@@ -290,7 +290,7 @@ void initialiseKeyframes(FRAME KeyFrame[], int type)
 		KeyFrame[FrameIndexSP].rotY = SProtY;
 		KeyFrame[FrameIndexSP].rotZ = SProtZ;
 
-		KeyFrame[FrameIndexSP].steps = 30;
+		KeyFrame[FrameIndexSP].steps = 80;
 
 		printf("FrameIndexS %d\t", FrameIndexSP);
 		printf("posX: %f, posY: %f, posZ: %f, rotX: %f, rotY: %f, rotZ: %f\n", KeyFrame[FrameIndexSP].posX, KeyFrame[FrameIndexSP].posY, KeyFrame[FrameIndexSP].posZ, KeyFrame[FrameIndexSP].rotX, KeyFrame[FrameIndexSP].rotY, KeyFrame[FrameIndexSP].rotZ);
